@@ -7,7 +7,7 @@ class Clock extends React.Component{
     this.state={
       sessionLength:this.props.sessionLength,
       breakLength:this.props.breakLength,
-      minute:1,
+      minute:25,
       second:0,
 	  sessionTimer:true
     };
@@ -157,8 +157,8 @@ function Timer({timerType, minute, second, handleStartStop, handleReset}){
 }
 
 Clock.defaultProps = {
-  sessionLength:1,
-  breakLength:1
+  sessionLength:25,
+  breakLength:5
 };
 
 export default Clock;
