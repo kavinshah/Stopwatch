@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
 class Clock extends React.Component{
@@ -7,7 +7,7 @@ class Clock extends React.Component{
     this.state={
       sessionLength:this.props.sessionLength,
       breakLength:this.props.breakLength,
-      minute:25,
+      minute:1,
       second:0,
 	  sessionTimer:true
     };
@@ -130,39 +130,35 @@ class Clock extends React.Component{
   }
 }
 
-class ToggleLength extends React.Component{  
-  render(){
-    return(
+function ToggleLength({labelId, name, toggleId, currentValue, downId, upId, handleDecreament, handleIncreament}){
+	return(
       <div>
-        <label id={this.props.labelId}>{this.props.name + ' : '}</label>
-        <label id={this.props.toggleId}>{this.props.currentValue}</label>
+        <label id={labelId}>{name + ' : '}</label>
+        <label id={toggleId}>{currentValue}</label>
         <div>
-          <button id={this.props.downId} onClick={this.props.handleDecreament}>-</button>
-          <button id={this.props.upId}  onClick={this.props.handleIncreament}>+</button>
+          <button id={downId} onClick={handleDecreament}>-</button>
+          <button id={upId}  onClick={handleIncreament}>+</button>
         </div>
       </div>
     );
-  }
 }
 
-class Timer extends React.Component{
-  render(){
-    return (
+function Timer({timerType, minute, second, handleStartStop, handleReset}){
+	return (
       <div>
-        <label id='timer-label'>{this.props.timerType + ' : '}</label>
-        <label id='time-left'>{String(this.props.minute).padStart(2,'0')}:{this.props.second.padStart(2,'0')}</label>
+        <label id='timer-label'>{timerType + ' : '}</label>
+        <label id='time-left'>{String(minute).padStart(2,'0')}:{second.padStart(2,'0')}</label>
         <div>
-          <button id='start_stop' onClick={this.props.handleStartStop}>Start/Stop</button>
-          <button id='reset' onClick={this.props.handleReset}>Reset</button>
+          <button id='start_stop' onClick={handleStartStop}>Start/Stop</button>
+          <button id='reset' onClick={handleReset}>Reset</button>
         </div>
       </div>
     );
-  }
 }
 
 Clock.defaultProps = {
-  sessionLength:25,
-  breakLength:5,
+  sessionLength:1,
+  breakLength:1
 };
 
 export default Clock;
