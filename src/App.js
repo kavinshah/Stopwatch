@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function Clock({bl, sl}){
-	const [sessionTimer, setSessionTimer] = useState(true);
 	const [sessionLength, setSessionLength] = useState(sl);
 	const [breakLength, setBreakLength] = useState(bl);
 	
@@ -71,6 +70,7 @@ function Timer({sessionLength, breakLength, handleResetButtonClick}){
 		setChangeAllowed(true);
 		setMinutes(25);
 		setSeconds(0);
+		rewindBeep();
 	}
 	
 	useEffect(()=>{
